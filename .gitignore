@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Virtual environments
+venv/
+venv313/
+
+# Local env
+.env
+
+# Runtime artifacts
+logs/
+celerybeat-schedule*
+mnt/
+*.log
+*.zip
+.coverage
+htmlcov/
+
+# Frontend local-only
+node_modules/
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

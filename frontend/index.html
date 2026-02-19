@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Football Data Infra | Real-Time Integrity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Inter+Tight:wght@700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+
+    <header class="topbar glass">
+      <div class="brand mono">FOOTBALL DATA INFRA / CORDOBA / 2026</div>
+      <div class="top-controls">
+        <label class="api-key-wrap" for="apiKeyInput">
+          <i class="bi bi-key"></i>
+          <input id="apiKeyInput" type="password" placeholder="API Key (premium)" />
+        </label>
+        <button id="saveApiKeyBtn" class="btn-ghost" type="button">Guardar</button>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero section">
+        <div class="hero-left">
+          <p class="kicker mono">OBSERVABILIDAD DE ALTA DEFINICION / LIVE</p>
+          <h1>REAL-TIME<br />INTEGRITY</h1>
+          <p class="subtitle">
+            Infraestructura de datos para el ciclo 2026-2030. Latencia sub-segundo,
+            quality gates, trazabilidad de pipeline y data marts listos para negocio.
+          </p>
+
+          <div class="hero-kpi-grid" id="heroKpis"></div>
+
+          <div class="hero-cta">
+            <a class="btn-primary" href="http://127.0.0.1:8001/docs" target="_blank" rel="noreferrer">
+              ACCEDER A LA API
+            </a>
+            <span id="heroStatus" class="status-chip">status: loading</span>
+          </div>
+        </div>
+
+        <div class="hero-right glass">
+          <div class="panel-head">
+            <span class="mono"><i class="bi bi-braces"></i> executive_kpi.json</span>
+            <span id="latencyBadge" class="pulse">latency: -- ms</span>
+          </div>
+          <pre id="jsonTicker" class="json-ticker mono"></pre>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">CAPABILITY GRID</h2>
+          <span id="lastRefresh" class="mono muted">last refresh --</span>
+        </div>
+        <div class="bento">
+          <article class="card card-wide glass" id="flowCard">
+            <h3><i class="bi bi-diagram-3"></i> DATA FLOW</h3>
+            <div class="flow mono">
+              <span><i class="bi bi-database"></i> scrape_raw</span>
+              <span class="arrow"><i class="bi bi-arrow-right"></i></span>
+              <span><i class="bi bi-funnel"></i> normalizer</span>
+              <span class="arrow"><i class="bi bi-arrow-right"></i></span>
+              <span><i class="bi bi-grid-1x2"></i> analytics.marts</span>
+            </div>
+            <p class="muted">ELT auditable con snapshots KPI, cobertura por competencia y layer de contratos.</p>
+          </article>
+
+          <article class="card glass" id="qualityCard">
+            <h3><i class="bi bi-shield-check"></i> QUALITY GATES</h3>
+            <p class="big-number" id="qualityCount">--</p>
+            <p id="qualityHint" class="mono muted">loading checks...</p>
+          </article>
+
+          <article class="card glass" id="pipelineCard">
+            <h3><i class="bi bi-cpu"></i> PIPELINE STATUS</h3>
+            <ul class="stack mono" id="pipelineStatus"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">DATA MARTS</h2>
+          <div class="toolbar">
+            <label class="mono" for="martLimit">limit</label>
+            <select id="martLimit">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+            </select>
+            <button id="refreshMartsBtn" class="btn-ghost" type="button">Refresh</button>
+          </div>
+        </div>
+
+        <div class="marts-grid">
+          <article class="card glass">
+            <h3><i class="bi bi-bar-chart-line"></i> BETTING ANALYTICS</h3>
+            <p class="muted">Team Form + Settlement Integrity</p>
+            <div id="bettingList" class="list mono"></div>
+          </article>
+
+          <article class="card glass">
+            <h3><i class="bi bi-person-badge"></i> PRO SCOUTING</h3>
+            <p class="muted">Season Ratings + Physical Metrics</p>
+            <div id="scoutingList" class="list mono"></div>
+          </article>
+
+          <article class="card glass">
+            <h3><i class="bi bi-broadcast"></i> ENGAGEMENT CONTENT</h3>
+            <p class="muted">Trending Scores + Viral Events</p>
+            <ul id="contentPreview" class="timeline mono"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">CONTENT ANALYTICS</h2>
+          <div class="toolbar">
+            <label class="mono" for="daysFilter">days</label>
+            <input id="daysFilter" type="number" min="7" max="180" value="30" />
+            <label class="mono" for="targetFilter">target</label>
+            <input id="targetFilter" type="number" min="0" max="1" step="0.05" value="0.7" />
+            <button id="refreshContentBtn" class="btn-ghost" type="button">Apply</button>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <article class="card glass">
+            <h3><i class="bi bi-lightning"></i> TOP ACTIONS</h3>
+            <div id="topActions" class="list mono"></div>
+          </article>
+          <article class="card glass">
+            <h3><i class="bi bi-fire"></i> HOT MATCHES</h3>
+            <div id="hotMatches" class="list mono"></div>
+          </article>
+          <article class="card glass">
+            <h3><i class="bi bi-stars"></i> HOT PLAYERS</h3>
+            <div id="hotPlayers" class="list mono"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section trust">
+        <h2 class="section-title">TRUST LAYER</h2>
+        <div class="trust-grid">
+          <article class="card glass">
+            <h3><i class="bi bi-speedometer2"></i> LATENCY TREND</h3>
+            <svg id="latencyChart" viewBox="0 0 320 120" class="chart" role="img" aria-label="latency trend">
+              <polyline id="latencyLine" fill="none" stroke="url(#lineGrad)" stroke-width="2.5" points=""></polyline>
+              <defs>
+                <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#00FF41"></stop>
+                  <stop offset="100%" stop-color="#F2F2F2"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+            <p class="mono muted" id="latencyMeta">p95 target &lt; 500ms</p>
+          </article>
+
+          <article class="card glass">
+            <h3><i class="bi bi-activity"></i> LEAGUE STATUS</h3>
+            <ul id="leagueStatus" class="status-list mono"></ul>
+            <p class="muted">99.9% uptime SLA. Monitoreo proactivo de schema drift.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="card glass console-card">
+          <h3><i class="bi bi-terminal"></i> EVENT LOG</h3>
+          <div id="eventLog" class="console mono"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

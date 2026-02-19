@@ -1,0 +1,40 @@
+{
+  "id": "734521",
+  "date": "2026-02-10T00:30Z",
+  "leagues": [
+    {
+      "name": "Argentine Liga Profesional de Futbol"
+    }
+  ],
+  "competitions": [
+    {
+      "status": {
+        "type": {
+          "state": "post",
+          "detail": "FT"
+        }
+      },
+      "competitors": [
+        {
+          "homeAway": "home",
+          "score": "2",
+          "team": {
+            "id": "48",
+            "displayName": "Talleres",
+            "shortDisplayName": "Talleres"
+          }
+        },
+        {
+          "homeAway": "away",
+          "score": "1",
+          "team": {
+            "id": "9",
+            "displayName": "River Plate",
+            "shortDisplayName": "River"
+          }
+        }
+      ]
+    }
+  ]
+}
+

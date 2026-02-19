@@ -1,0 +1,5 @@
+REFRESH MATERIALIZED VIEW analytics.dm_scouting_player_season;
+REFRESH MATERIALIZED VIEW analytics.dm_betting_team_form;
+REFRESH MATERIALIZED VIEW analytics.dm_content_team_trending;
+REFRESH MATERIALIZED VIEW analytics.dm_content_player_trending;
+REFRESH MATERIALIZED VIEW analytics.dm_content_match_intensity;
