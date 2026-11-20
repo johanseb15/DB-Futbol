@@ -1,3 +1,22 @@
+> **Ficha de proyecto — Vyntrava | 2026-11-20**
+> Estado documental: revisión de repositorio; no implica despliegue ni auditoría de producción.
+
+## Resumen y propósito
+
+**Laboratorio de datos deportivos.** Pipeline Python para capturar, normalizar y almacenar información futbolística en PostgreSQL; estructura de scrapers, migraciones, API y pruebas.
+
+## Estado y límites
+
+Código experimental con dependencias de fuentes externas. No se verificó la vigencia, autorización ni funcionamiento actual de cada scraper.
+
+## Ubicación en el portfolio
+
+Referencia de ingeniería de datos y normalización, no una fuente comercial de datos deportivos certificada.
+
+**Código:** [DB-Futbol](https://github.com/johanseb15/DB-Futbol) · **Documentación técnica original:** continúa a continuación y puede reflejar un estado histórico.
+
+---
+
 # Football Intelligence DB
 
 Backend de datos de fútbol: scraping + normalización + PostgreSQL.  
